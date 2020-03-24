@@ -1,0 +1,50 @@
+@import "./utils.scss";
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body,
+button,
+a,
+select,
+input {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+input,
+select {
+  border: 0;
+  background: transparent;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  outline: none;
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.content {
+  max-width: 1160px;
+  padding: 0 34px;
+  margin: 0 auto;
+
+  @media (max-width: $breack-point-phone) {
+    padding: 0 20px;
+  }
+
+  @media (min-width: $breack-point-large) {
+    max-width: 1520px;
+  }
+}
