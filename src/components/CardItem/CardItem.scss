@@ -10,13 +10,13 @@
   line-height: 21px;
   border: 1px solid #e0e0e0;
   box-shadow: none;
-  transition: box-shadow 500ms;
+  transition: box-shadow 300ms;
 
   overflow: hidden;
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   }
 
   &__wrapper-img {
