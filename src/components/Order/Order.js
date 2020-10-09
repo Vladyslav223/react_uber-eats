@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Loader from '../Loader';
 import Error from '../Error';
-
 import './Order.scss';
 
 export const Order = ({
+  addToCart,
   deleteOrder,
   order,
   isLoading,
   error,
+  cart,
 }) => {
+  const [counter, setCount] = useState(1);
+
+  const incrementCounter = () => setCount(counter + 1);
+  const decrementCounter = () => setCount(counter - 1);
+
+  const addToCartHandler = (product, amount) => {
+    const payload = product;
+
+    payload.amount = amount;
+
+    addToCart(payload);
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
+  const { imageUrl, title, itemDescription, price } = order;
+
+  const srcImage = imageUrl || './images/no_image.png';
+  const srcTitle = title || 'no-image icon';
+
   if (isLoading) {
     return <Loader />;
   }
-
-  const { imageUrl, title, itemDescription } = order;
-  const countItem = 1;
-  const srcImage = imageUrl || './images/no_image.png';
-  const srcTitle = title || 'no-image icon';
 
   return (
     <aside className="modal">
@@ -29,24 +45,42 @@ export const Order = ({
           <>
             <img className="modal-window__img" src={srcImage} alt={srcTitle} />
             <div className="modal-window__wrapper-content">
+              <p className="modal-window__title">{`${price}₴`}</p>
               <p className="modal-window__title">{title}</p>
               <p className="modal-window__description">{itemDescription}</p>
               <div className="modal-window__footer">
                 <div className="counter">
-                  <img
-                    className="counter__button"
-                    src="./images/button-minus.svg"
-                    alt="icon minus"
-                  />
-                  <div className="counter__item">{countItem}</div>
-                  <img
-                    className="counter__button"
-                    src="./images/button-plus.svg"
-                    alt="icon plus"
-                  />
+                  <button
+                    className="counter__change-amount"
+                    type="button"
+                    onClick={decrementCounter}
+                  >
+                    <img
+                      className="counter__button"
+                      src="./images/button-minus.svg"
+                      alt="icon minus"
+                    />
+                  </button>
+
+                  <div className="counter__item">{counter}</div>
+                  <button
+                    className="counter__change-amount"
+                    type="button"
+                    onClick={incrementCounter}
+                  >
+                    <img
+                      className="counter__button"
+                      src="./images/button-plus.svg"
+                      alt="icon plus"
+                    />
+                  </button>
                 </div>
-                <button type="button" className="modal-window__button-order">
-                  {`Add ${countItem}`}
+                <button
+                  onClick={() => addToCartHandler(order, counter)}
+                  type="button"
+                  className="modal-window__button-order"
+                >
+                  Add to cart
                 </button>
               </div>
             </div>
@@ -74,11 +108,13 @@ Order.propTypes = {
   isLoading: PropTypes.bool,
   error: PropTypes.string,
   deleteOrder: PropTypes.func.isRequired,
-  order: PropTypes.shape(),
+  order: PropTypes.oneOfType([PropTypes.shape, PropTypes.array]),
+  addToCart: PropTypes.func.isRequired,
+  cart: PropTypes.oneOfType([PropTypes.array]).isRequired,
 };
 
 Order.defaultProps = {
   error: null,
   isLoading: false,
-  order: [],
+  order: null,
 };

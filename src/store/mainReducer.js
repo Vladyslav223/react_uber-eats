@@ -7,9 +7,11 @@ const initialState = {
   error: null,
   order: null,
   showModalWindow: false,
+  cart: [],
+  totalCheckout: 0,
 };
 
-export function rootReducer(state = initialState, action) {
+export function mainReducer(state = initialState, action) {
   switch (action.type) {
     case ACTION_TYPES.SAVE_RESTAURANTS: {
       const { payload } = action;
@@ -64,6 +66,69 @@ export function rootReducer(state = initialState, action) {
       return ({
         ...state,
         order: payload,
+      });
+    }
+
+    case ACTION_TYPES.ADD_TO_CART: {
+      const { payload } = action;
+      const doWeHave = state.cart
+        .find(product => product && product.uuid === payload.uuid);
+
+      if (doWeHave) {
+        doWeHave.amount += payload.amount;
+
+        return ({
+          ...state,
+        });
+      }
+
+      return ({
+        ...state,
+        cart: [...state.cart, payload],
+      });
+    }
+
+    case ACTION_TYPES.CHANGE_AMOUNT: {
+      const { payload } = action;
+      const curentProduct = state.cart
+        .find(product => product.uuid === payload.uuid);
+
+      curentProduct.amount = payload.amount;
+      if (!payload.amount) {
+        const newGoodsList = state.cart
+          .filter(product => product.uuid !== curentProduct.uuid);
+
+        return ({
+          ...state,
+          cart: [...newGoodsList],
+        });
+      }
+
+      return ({
+        ...state,
+      });
+    }
+
+    case ACTION_TYPES.RETURN_CART: {
+      const { payload } = action;
+
+      return ({
+        ...state,
+        cart: payload,
+      });
+    }
+
+    case ACTION_TYPES.CALCULATE_CART_TOTAL: {
+      const { cart } = state;
+      let productSum = 0;
+
+      for (let i = 0; i < cart.length; i + 1) {
+        productSum += cart[i].amount * cart[i].price;
+      }
+
+      return ({
+        ...state,
+        totalCheckout: productSum,
       });
     }
 

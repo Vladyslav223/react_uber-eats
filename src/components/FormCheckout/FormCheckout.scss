@@ -1,0 +1,58 @@
+@import "../../styles/variables.scss";
+
+.form-checkout {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    border: 2px solid #ececec;
+    margin-top: 13px;
+    padding: 20px 10px;
+    
+    @media (max-width: $breack-point-phone) {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        border: 2px solid #696d66;
+        margin: 10px auto;
+        padding: 20px 10px;
+      }
+
+    .MuiInputBase-root {
+        margin-bottom: 22px;
+        border: 1px solid #ebebeb;
+        border-bottom: none;
+        color: #636363;
+    }
+
+    .MuiInputBase-input {
+        padding: 15px 14px 8px;
+        font-size: 15px;
+    }
+
+    .MuiInputBase-input::placeholder {
+        color: rgb(112, 112, 112);
+    }
+
+    .MuiInput-underline:after {
+        border-bottom: 2px solid #4a8c48;
+    }
+
+    .MuiButton-containedPrimary {
+        background-color: #6d9c3e;
+        padding: 10px 0;
+        margin-top: 30px;
+        font-size: 16px;
+        letter-spacing: 5px;
+    }
+
+    .MuiInput-underline:before {
+        border-bottom: 1px solid #6d9c3e73;
+    }
+    .MuiInput-underline:hover:not(.Mui-disabled):before {
+        border-bottom: 2px solid #377b29de;
+    }
+
+    .MuiButton-containedPrimary:hover {
+        background-color: #618e35;
+    }
+}

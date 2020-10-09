@@ -1,4 +1,5 @@
 @import "../../styles/utils.scss";
+@import "../../styles/variables.scss";
 
 .header {
   position: sticky;
@@ -12,6 +13,11 @@
 
   &__inner {
     @extend %flex-row-center;
+    & > label{
+      @media (max-width: $breack-point-phone) {
+        display: none;
+      }
+    }
   }
 
   &__logo {
@@ -36,17 +42,90 @@
   &__search {
     margin-left: auto;
 
-    @media (max-width: $breack-point-tablet) {
+    @media (max-width: $breack-point-phone) {
       display: none;
     }
   }
 
+  &__cart {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 20px;
+    width: 140px;
+    height: 48px;
+    padding: 0 10px 0 3px;
+    border: 1px solid #e0e0e0;
+    
+
+    @media (max-width: $breack-point-phone) {
+      border: none;
+      margin-left: 5px;
+      justify-content: right;
+    }
+  }
+
+  &__cart-img {
+    width: 32px;
+    transform: scaleX(-1);
+    opacity: 0.7;
+
+    @media (max-width: $breack-point-phone) {
+      margin-right: 5px;
+    }
+  }
+
+ &__cart-wrap {
+   position: relative;
+   overflow: hidden;
+ }
+
+  &__cart-amount {
+    position: absolute;
+    left: 39px;
+    top: -25px;
+    transform: rotate(35deg);
+    background: #9ec329;
+    border-radius: 50px;
+    width: 19px;
+    height: 19px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;    
+
+    @media (max-width: $breack-point-phone) {
+      left: 17px;
+    }
+  }
+
+  &__cart-amount-animate {
+    transition: top 0.2s cubic-bezier(0.175, 0.385, 0.12, 1.875) 0.5s;
+    top: 5px;
+  }
+
+  &__cart-total {
+    color: #4c9604;
+
+    @media (max-width: $breack-point-phone) {
+      font-size: 12px;
+    }
+  }
+
   &__link {
-    margin-left: 40px;
+    margin-left: 20px;
     padding: 12px 0;
 
     white-space: nowrap;
     color: #1f1f1f;
+
+    @media (max-width: $breack-point-phone) {
+      margin-left: 0;
+    }
 
     &:hover {
       text-decoration: underline;

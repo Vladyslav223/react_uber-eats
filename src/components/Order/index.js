@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 
 import { Order } from './Order';
-import { setOrder, setModalWindow } from '../../store/actions';
+import {
+  setOrder,
+  addToCart,
+  setModalWindow,
+  calculateCartTotal,
+} from '../../store/actions';
 import {
   selectOrder,
   selectRestaurantsListError,
@@ -12,12 +17,18 @@ const mapStateToProps = state => ({
   order: selectOrder(state),
   error: selectRestaurantsListError(state),
   isLoading: selectIsLoading(state),
+  cart: state.cart,
 });
 
 const mapDispatchToProps = dispatch => ({
   deleteOrder: () => {
     dispatch(setModalWindow(false));
     dispatch(setOrder(null));
+  },
+  addToCart: (product) => {
+    dispatch(addToCart(product));
+    dispatch(calculateCartTotal());
+    dispatch(setModalWindow(false));
   },
 });
 

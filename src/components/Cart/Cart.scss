@@ -1,0 +1,36 @@
+@import "../../styles/variables.scss";
+
+.cart {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+
+    @media (max-width: $breack-point-phone) {
+        display: block;
+      }
+   
+    &__h1 {
+        text-align: center;
+        background-color: #dadada;
+        margin: 0;
+    }
+
+    &__total {
+        display: block;
+        border: 1px solid #e8e8e8;
+        margin-top: 5px;
+        padding: 5px 15px;
+
+        @media (max-width: $breack-point-phone) {
+            display: block;
+            border: 1px solid #e8e8e8;
+            margin: 25px 0;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 28px;
+            background: #bbbbbb;
+            color: black;
+          }
+    }
+}

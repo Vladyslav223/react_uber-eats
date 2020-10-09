@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .modal{
   z-index: 2;
   position: fixed;
@@ -32,6 +34,13 @@
       display: block;
       height: 375px;
       margin: 0 auto 50px;
+
+      @media (max-width: $breack-point-phone) {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+      }
     }
 
     &__wrapper-content {
@@ -43,6 +52,11 @@
       font-weight: 500;
       line-height: 21px;
       margin-bottom: 2px;
+
+      @media (max-width: $breack-point-phone) {
+        line-height: 32px;
+        margin: 5px 0;
+      }
     }
 
     &__description {
@@ -68,6 +82,15 @@
         cursor: pointer;
       }
     }
+
+    @media (max-width: $breack-point-phone) {
+      position: relative;
+      margin: 7px auto;
+      border-radius: 0;
+      background: #fff;
+      max-width: 340px;
+    }
+
   }
 }
 

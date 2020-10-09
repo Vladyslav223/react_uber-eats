@@ -56,7 +56,6 @@ export class Input extends PureComponent {
           )}
 
           <input
-            id="control"
             type={type}
             value={value}
             onChange={onChange}

@@ -8,6 +8,10 @@ export const ACTION_TYPES = {
   STOP_LOADING: 'STOP_LOADING',
   SET_ORDER: 'SET_ORDER',
   SET_MODAL_WINDOW: 'SET_MODAL_WINDOW',
+  ADD_TO_CART: 'ADD_TO_CART',
+  CHANGE_AMOUNT: 'CHANGE_AMOUNT',
+  RETURN_CART: 'RETURN_CART',
+  CALCULATE_CART_TOTAL: 'CALCULATE_CART_TOTAL',
 };
 
 const saveRestaurants = data => ({
@@ -36,6 +40,28 @@ const stopLoading = () => ({
 export const setOrder = uuid => ({
   type: ACTION_TYPES.SET_ORDER,
   payload: uuid,
+});
+
+export const calculateCartTotal = () => ({
+  type: ACTION_TYPES.CALCULATE_CART_TOTAL,
+});
+
+export const addToCart = product => ({
+  type: ACTION_TYPES.ADD_TO_CART,
+  payload: product,
+});
+
+export const changeAmount = (amount, uuid) => ({
+  type: ACTION_TYPES.CHANGE_AMOUNT,
+  payload: {
+    amount,
+    uuid,
+  },
+});
+
+export const returnCartFromLS = cart => ({
+  type: ACTION_TYPES.RETURN_CART,
+  payload: cart,
 });
 
 export const setModalWindow = bool => ({

@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Input from '../Input';
 
 import './Header.scss';
 
 export class Header extends Component {
-  state={
+  state = {
     address: '',
     time: '',
     search: '',
     isMobileSearchVisible: false,
     isMobileDeliveryInfoVisible: false,
-  }
+  };
 
   handleChange = ({ target }) => {
     this.setState({
       [target.name]: target.value,
     });
-  }
+  };
 
   toggleSearch = () => this.setState(({ isMobileSearchVisible }) => ({
     isMobileSearchVisible: !isMobileSearchVisible,
@@ -28,10 +29,10 @@ export class Header extends Component {
   toggleDeliveryInfo = () => this.setState((prevState) => {
     const { isMobileDeliveryInfoVisible } = prevState;
 
-    return ({
+    return {
       isMobileDeliveryInfoVisible: !isMobileDeliveryInfoVisible,
       isMobileSearchVisible: false,
-    });
+    };
   });
 
   closeMobile = () => this.setState({
@@ -47,6 +48,8 @@ export class Header extends Component {
       isMobileDeliveryInfoVisible,
       isMobileSearchVisible,
     } = this.state;
+
+    const { totalCheckout, cart } = this.props;
 
     return (
       <header className="header">
@@ -112,13 +115,43 @@ export class Header extends Component {
                 />
               </button>
             </div>
-
-            <span
-              className="header__link"
-            >
-              Sign In
-            </span>
-
+            <div className="header__cart-wrap">
+              {cart && cart.length
+                ? (
+                  <Link to="/cart">
+                    <div className="header__cart">
+                      <img
+                        className="header__cart-img"
+                        src="./images/cart.png"
+                        alt="Uber Eats Cart"
+                      />
+                      <span className="header__cart-total">
+                        {`${totalCheckout} UAH`}
+                      </span>
+                    </div>
+                  </Link>
+                )
+                : (
+                  <div className="header__cart">
+                    <img
+                      className="header__cart-img"
+                      src="./images/cart.png"
+                      alt="Uber Eats Cart"
+                    />
+                  </div>
+                )
+              }
+              <span
+                className={
+                  !cart.length
+                    ? 'header__cart-amount'
+                    : 'header__cart-amount header__cart-amount-animate'
+                }
+              >
+                {cart && cart.length}
+              </span>
+            </div>
+            <span className="header__link">Sign In</span>
           </div>
 
           {(isMobileSearchVisible || isMobileDeliveryInfoVisible) && (
@@ -165,10 +198,7 @@ export class Header extends Component {
                 type="button"
                 className="mobile-controls__close"
               >
-                <img
-                  src="./images/close.svg"
-                  alt="search icon"
-                />
+                <img src="./images/close.svg" alt="search icon" />
               </button>
             </div>
           )}
@@ -177,3 +207,12 @@ export class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  totalCheckout: PropTypes.number,
+  cart: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.shape])).isRequired,
+};
+
+Header.defaultProps = {
+  totalCheckout: 0,
+};

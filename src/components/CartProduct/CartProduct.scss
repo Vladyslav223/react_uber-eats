@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+
+.cart-product {
+    display: flex;
+    align-items: center;
+    color: #636363;
+    width: 600px;
+    border: 2px solid #ececec;
+    margin-top: 13px;
+
+    @media (max-width: $breack-point-phone) {
+        display: block;
+        width: 100%;        
+        border: 1px solid #ececec;
+        margin-top: 0;
+      }
+    
+    &__price {
+        display: block;
+        font-size: 24px;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-left: 2px solid #dadada;
+        padding-left: 20px;
+    }
+
+    &__amount {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    &__img {
+        width: 250px;
+
+        @media (max-width: $breack-point-phone) {
+            width: 100%;        
+          }
+    }
+}
