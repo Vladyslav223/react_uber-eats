@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader';
 import Error from '../Error';
 import './Order.scss';
+import { store } from '../../store';
 
 export const Order = ({
   addToCart,
@@ -11,10 +12,8 @@ export const Order = ({
   order,
   isLoading,
   error,
-  cart,
 }) => {
   const [counter, setCount] = useState(1);
-
   const incrementCounter = () => setCount(counter + 1);
   const decrementCounter = () => setCount(counter - 1);
 
@@ -22,10 +21,8 @@ export const Order = ({
     const payload = product;
 
     payload.amount = amount;
-
     addToCart(payload);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(store.getState().cart));
   };
 
   const { imageUrl, title, itemDescription, price } = order;
@@ -108,13 +105,11 @@ Order.propTypes = {
   isLoading: PropTypes.bool,
   error: PropTypes.string,
   deleteOrder: PropTypes.func.isRequired,
-  order: PropTypes.oneOfType([PropTypes.shape, PropTypes.array]),
+  order: PropTypes.shape().isRequired,
   addToCart: PropTypes.func.isRequired,
-  cart: PropTypes.oneOfType([PropTypes.array]).isRequired,
 };
 
 Order.defaultProps = {
   error: null,
   isLoading: false,
-  order: null,
 };

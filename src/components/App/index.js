@@ -9,7 +9,6 @@ import {
 const mapStateToProps = state => ({
   order: selectOrder(state),
   modalWindow: selectStateModalWindow(state),
-  cart: state.cart,
 });
 
 const mapDispatchToProps = dispatch => ({

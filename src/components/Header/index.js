@@ -3,7 +3,7 @@ import { Header } from './Header';
 
 const mapStateToProps = state => ({
   totalCheckout: state.totalCheckout,
-  cart: state.cart,
+  totalItemCheckout: state.totalItemCheckout,
 });
 
 const Enhanced = connect(

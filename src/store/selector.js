@@ -81,7 +81,7 @@ export const selectOrder = createSelector(
   rootSelector,
   ({ order }) => {
     if (!order) {
-      return [];
+      return {};
     }
 
     return order;

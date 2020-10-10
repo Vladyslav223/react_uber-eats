@@ -49,7 +49,7 @@ export class Header extends Component {
       isMobileSearchVisible,
     } = this.state;
 
-    const { totalCheckout, cart } = this.props;
+    const { totalCheckout, totalItemCheckout } = this.props;
 
     return (
       <header className="header">
@@ -116,7 +116,7 @@ export class Header extends Component {
               </button>
             </div>
             <div className="header__cart-wrap">
-              {cart && cart.length
+              {totalItemCheckout
                 ? (
                   <Link to="/cart">
                     <div className="header__cart">
@@ -143,12 +143,12 @@ export class Header extends Component {
               }
               <span
                 className={
-                  !cart.length
+                  !totalItemCheckout
                     ? 'header__cart-amount'
                     : 'header__cart-amount header__cart-amount-animate'
                 }
               >
-                {cart && cart.length}
+                {totalItemCheckout}
               </span>
             </div>
             <span className="header__link">Sign In</span>
@@ -209,10 +209,6 @@ export class Header extends Component {
 }
 
 Header.propTypes = {
-  totalCheckout: PropTypes.number,
-  cart: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.shape])).isRequired,
-};
-
-Header.defaultProps = {
-  totalCheckout: 0,
+  totalCheckout: PropTypes.number.isRequired,
+  totalItemCheckout: PropTypes.number.isRequired,
 };

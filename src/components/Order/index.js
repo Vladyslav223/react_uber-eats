@@ -17,7 +17,6 @@ const mapStateToProps = state => ({
   order: selectOrder(state),
   error: selectRestaurantsListError(state),
   isLoading: selectIsLoading(state),
-  cart: state.cart,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -17,7 +17,7 @@ export const App = ({ modalWindow, returnCartFromLS }) => {
     if (cartLS) {
       returnCartFromLS(JSON.parse(cartLS));
     }
-  }, []);
+  }, [returnCartFromLS]);
 
   return (
     <>

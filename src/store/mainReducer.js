@@ -5,10 +5,11 @@ const initialState = {
   restaurantPageData: null,
   isLoading: false,
   error: null,
-  order: null,
+  order: {},
   showModalWindow: false,
   cart: [],
   totalCheckout: 0,
+  totalItemCheckout: 0,
 };
 
 export function mainReducer(state = initialState, action) {
@@ -121,14 +122,17 @@ export function mainReducer(state = initialState, action) {
     case ACTION_TYPES.CALCULATE_CART_TOTAL: {
       const { cart } = state;
       let productSum = 0;
+      let productQty = 0;
 
-      for (let i = 0; i < cart.length; i + 1) {
-        productSum += cart[i].amount * cart[i].price;
-      }
+      cart.forEach((product) => {
+        productSum += product.amount * product.price;
+        productQty += product.amount;
+      });
 
       return ({
         ...state,
         totalCheckout: productSum,
+        totalItemCheckout: productQty,
       });
     }
 

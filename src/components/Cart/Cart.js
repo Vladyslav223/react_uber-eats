@@ -29,9 +29,19 @@ const Cart = ({ cart, changeAmount, totalCheckout }) => {
               changeQty={changeQty}
             />
           ))}
-          <span className="cart__total">{`Total:${totalCheckout} UAH`}</span>
+          {cart.length !== 0
+            ? (
+              <span className="cart__total">
+                {`Total:${totalCheckout} UAH`}
+              </span>
+            ) : (
+              <span className="cart__total">
+                Cart empty
+              </span>
+            )
+          }
         </div>
-        <FormCheckout />
+        {cart.length !== 0 && <FormCheckout />}
       </div>
     </>
   );
