@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react_uber-eats/static/css/main.a061c298.chunk.css",
-    "main.js": "/react_uber-eats/static/js/main.f68ec584.chunk.js",
-    "main.js.map": "/react_uber-eats/static/js/main.f68ec584.chunk.js.map",
+    "main.js": "/react_uber-eats/static/js/main.08467a12.chunk.js",
+    "main.js.map": "/react_uber-eats/static/js/main.08467a12.chunk.js.map",
     "runtime~main.js": "/react_uber-eats/static/js/runtime~main.bef14170.js",
     "runtime~main.js.map": "/react_uber-eats/static/js/runtime~main.bef14170.js.map",
     "static/js/2.4c087bf3.chunk.js": "/react_uber-eats/static/js/2.4c087bf3.chunk.js",
     "static/js/2.4c087bf3.chunk.js.map": "/react_uber-eats/static/js/2.4c087bf3.chunk.js.map",
     "index.html": "/react_uber-eats/index.html",
-    "precache-manifest.99dc18dc580f64ea90df0d5a3a05763f.js": "/react_uber-eats/precache-manifest.99dc18dc580f64ea90df0d5a3a05763f.js",
+    "precache-manifest.744873870696980a2483f0db0c9450de.js": "/react_uber-eats/precache-manifest.744873870696980a2483f0db0c9450de.js",
     "service-worker.js": "/react_uber-eats/service-worker.js",
     "static/css/main.a061c298.chunk.css.map": "/react_uber-eats/static/css/main.a061c298.chunk.css.map"
   }
